@@ -1,0 +1,24 @@
+{
+  "name": "node-52weeks-browserify",
+  "version": "1.0.0",
+  "description": "Learn 52 node packages in 52 weeks | browserify",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DotHide/node-52weeks-browserify.git"
+  },
+  "keywords": [
+    "browserify",
+    "node",
+    "52weeks"
+  ],
+  "author": "Jack Zhang <dothide@gmail.com> (https://github.com/DotHide)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DotHide/node-52weeks-browserify/issues"
+  },
+  "homepage": "https://github.com/DotHide/node-52weeks-browserify#readme"
+}
