@@ -56,6 +56,7 @@ $ browserify main.js > bundle.js
 `browserify` 允许在命令行中使用 `require` 参数来做外部引用，而这些外部引用往往来自其他的 `script` 标签：
 
 ~~~bash
+# -r 即 --require，后跟模块名称或者本地模块，还可通过一个冒号分隔符来自定义模块名称
 $ browserify -r starwars-names-dothide \
 -r ./external.main.js:external > external.bundle.js
 ~~~
