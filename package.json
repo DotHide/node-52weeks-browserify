@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/DotHide/node-52weeks-browserify/issues"
   },
-  "homepage": "https://github.com/DotHide/node-52weeks-browserify#readme"
+  "homepage": "https://github.com/DotHide/node-52weeks-browserify#readme",
+  "devDependencies": {
+    "starwars-names-dothide": "1.3.0"
+  }
 }
