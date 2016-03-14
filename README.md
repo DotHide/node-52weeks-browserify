@@ -4,7 +4,7 @@
 **第 02 周（2016.03.14）** [browserify](https://www.npmjs.com/package/browserify) 篇
 
 ### browserify 简介
-browserify 的作用是能让你在浏览器端跑 node-style 的代码，如：`require()`。它的原理是递归地分析应用中所有的 `require()` 调用，从而生成出一个能安置在浏览器 `<script>` 标签中集成包（bundle）文件。
+browserify 的作用是能让你在浏览器端跑 node-style 的代码，如：`require()`。它的原理是递归查找应用中所有的 `require()` 调用依赖，从而生成出一个能安置在浏览器 `<script>` 标签中的单个包（bundle.js）文件。
 
 在本周，我们将一起来学习这个组件，看看应当如何来使用它以及它的内部原理究竟是怎么实现的。
 
@@ -51,3 +51,31 @@ $ browserify main.js > bundle.js
 这时，当我们打开 `index.html` 就能看到 `main.js` 的业务逻辑成功的在浏览器端运行了。
 
 ![Bundled](images/browserify-1.png)
+
+#### 外部引用
+`browserify` 允许在命令行中使用 `require` 参数来做外部引用，而这些外部引用往往来自其他的 `script` 标签：
+
+~~~bash
+$ browserify -r starwars-names-dothide \
+-r ./external.main.js:external > external.bundle.js
+~~~
+
+~~~html
+<!-- external.index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>External</title>
+</head>
+<body>
+  <p id="starwars"></p>
+  <script type="text/javascript" src="external.bundle.js"></script>
+  <script type="text/javascript">
+    var starwars = require('starwars-names-dothide');
+    var external = require('external');
+  </script>
+</body>
+</html>
+~~~
+
+最终的浏览器效果跟上例相似
