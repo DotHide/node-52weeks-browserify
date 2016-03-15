@@ -80,3 +80,61 @@ $ browserify -r starwars-names-dothide \
 ~~~
 
 最终的浏览器效果跟上例相似
+
+### 工作原理
+在深入了解如何使用 browserify 和它的工作原理之前，我们需要首先理解基于 CommonJS 系统的 Node 究竟是怎么工作的。
+
+#### require
+在 node 中，`require()` 方法被用来从其他文件载入代码，类似于 ruby 中的 `require` 。
+
+例如：通过 npm 安装 `uniq` 组件
+
+~~~shell
+$ npm install uniq
+~~~
+
+然后，在我们自己的文件中，可以这样来引用它
+
+~~~js
+var uniq = require('uniq');
+var nums = [ 5, 2, 1, 3, 2, 5, 4, 2, 0, 1 ];
+console.log(uniq(nums));
+~~~
+
+接着，使用 node 命令执行该文件，可以得到：
+
+~~~shell
+$ node nums.js # [ 0, 1, 2, 3, 4, 5 ]
+~~~
+
+如果你要引用的是本地相对位置的文件，可以这样来写：
+
+~~~js
+// 同级目录
+var foo = require('./foo.js');
+
+// 父级目录
+var bar = require('../bar.js');
+
+// 子目录
+var zoo = require('subfolder/zoo.js');
+~~~
+
+#### exports
+从一个文件中导出一个方法来其他文件引入，将方法赋值给 `module.exports` ：
+
+~~~js
+// foo.js
+module.exports = function (n) {
+    return n * 111
+};
+~~~
+
+~~~js
+// main.js
+var foo = require('./foo.js');
+console.log(foo(5)); 
+
+// Output: 555
+~~~
+
