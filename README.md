@@ -138,3 +138,39 @@ console.log(foo(5));
 // Output: 555
 ~~~
 
+然而，你还可以用 `module.exports` 导出任何类型，如：
+
+~~~js
+module.exports = 555;
+~~~
+
+甚至是这样：
+
+~~~js
+var numbers = [];
+for (var i = 0; i < 100; i++) numbers.push(i);
+module.exports = numbers;
+~~~
+
+##### module.exports 和 exports
+此外，还有一种特殊的导出形式，就是直接使用 `exports`，但它必须指定对象，这种情况下就能用 `exports` 直接替代 `module.exports`：
+
+~~~js
+exports.beep = function (n) { return n * 1000 }
+exports.boop = 555;
+~~~
+
+以上代码跟以下代码效果一致：
+
+~~~js
+module.exports.beep = function (n) { return n * 1000 }
+module.exports.boop = 555;
+~~~
+
+**但是**，你不能这样来使用：
+
+~~~js
+// this doesn't work
+exports = function (n) { return n * 1000 }
+~~~
+
